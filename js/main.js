@@ -101,39 +101,55 @@ filterBtns.forEach(btn => {
   });
 });
 
-/* ── Contact form demo ── */
+/* ── Contact form with Formspree ── */
 const form = document.getElementById('contact-form');
 const sendBtn = document.getElementById('send-btn');
 
 if (form && sendBtn) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = form.querySelector('#name').value.trim();
-    const email = form.querySelector('#email').value.trim();
-    const message = form.querySelector('#message').value.trim();
+    const formData = new FormData(form);
+    const name = formData.get('name')?.trim();
+    const email = formData.get('email')?.trim();
+    const message = formData.get('message')?.trim();
 
     if (!name || !email || !message) {
       showToast('⚠️ Please fill in all required fields.', 'error');
       return;
     }
 
-    /* Demo only — this does not send real emails yet */
     sendBtn.textContent = 'Sending…';
     sendBtn.disabled = true;
     sendBtn.style.opacity = '.7';
 
-    setTimeout(() => {
-      sendBtn.textContent = 'Sent! ✓';
-      showToast('✅ Message sent — I\'ll be in touch soon!');
-      form.reset();
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
 
-      setTimeout(() => {
+      if (response.ok) {
+        showToast('✅ Message sent successfully!');
+        form.reset();
+        sendBtn.textContent = 'Sent! ✓';
+      } else {
+        showToast('⚠️ Message failed. Please try again.', 'error');
         sendBtn.textContent = 'Send Message →';
-        sendBtn.disabled = false;
-        sendBtn.style.opacity = '1';
-      }, 1200);
-    }, 1400);
+      }
+    } catch (error) {
+      showToast('⚠️ Network error. Please try again.', 'error');
+      sendBtn.textContent = 'Send Message →';
+    }
+
+    setTimeout(() => {
+      sendBtn.textContent = 'Send Message →';
+      sendBtn.disabled = false;
+      sendBtn.style.opacity = '1';
+    }, 1500);
   });
 }
 
