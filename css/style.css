@@ -744,19 +744,32 @@ section {
   margin-bottom: 1.25rem;
 }
 
+/* PROJECT GITHUB LINK */
 .card-link {
   display: inline-flex;
   align-items: center;
-  gap: .4rem;
-  font-size: .85rem;
-  font-weight: 600;
+  gap: .55rem;
+  font-size: .9rem;
+  font-weight: 700;
   color: var(--violet);
   text-decoration: none;
-  transition: gap .2s ease;
+  transition: color .2s ease, gap .2s ease, transform .2s ease;
+}
+
+.card-link::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.37-3.87-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.04 1.76 2.72 1.25 3.38.96.11-.75.41-1.25.74-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.18 1.18.92-.26 1.91-.38 2.9-.39.99.01 1.98.13 2.9.39 2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.37-3.87-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.04 1.76 2.72 1.25 3.38.96.11-.75.41-1.25.74-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.18 1.18.92-.26 1.91-.38 2.9-.39.99.01 1.98.13 2.9.39 2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .card-link:hover {
-  gap: .7rem;
+  color: var(--mint);
+  gap: .75rem;
+  transform: translateX(2px);
 }
 
 /* CONTACT */
@@ -1230,14 +1243,5 @@ footer a {
   .skill-card {
     padding: 1.5rem;
     min-height: auto;
-  }
-
-  .social-link {
-    flex-wrap: wrap;
-  }
-
-  .social-link .s-handle {
-    width: 100%;
-    margin-left: 2.2rem;
   }
 }
