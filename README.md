@@ -1,4 +1,4 @@
-# Portfolio — Your Name
+# Manuthi Mewanya | Portfolio
 
 A personal portfolio website built with vanilla HTML, CSS, and JavaScript.
 
